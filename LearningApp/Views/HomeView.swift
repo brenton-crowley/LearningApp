@@ -12,8 +12,12 @@ struct HomeView: View {
     @EnvironmentObject private var model:ContentModel
     
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text("Modules: \(model.modules.count)")
+            List(model.modules) {module in
+                Text(module.category)
+            }
+        }
     }
 }
 
