@@ -7,6 +7,16 @@
 
 import Foundation
 
+protocol Cardable {
+    
+    var id:Int { get set }
+    var title:String { get set }
+    var description:String { get set }
+    var duration:String { get set }
+    var type:String { get }
+    
+}
+
 struct Module: Identifiable, Decodable {
     var id:Int
     var category:String

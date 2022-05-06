@@ -9,16 +9,65 @@ import SwiftUI
 
 struct HomeView: View {
     
+    private struct Constants {
+        static let navigationTitle = "Get Started"
+        static let navigationSubtitle = "What would you like to do today?"
+        static let cardSpacing:CGFloat = 30.0
+    }
+    
     @EnvironmentObject private var model:ContentModel
     
     var body: some View {
-        VStack {
-            Text("Modules: \(model.modules.count)")
-            List(model.modules) {module in
-                Text(module.category)
+        
+        NavigationView {
+            
+            VStack (alignment:.leading) {
+                Text(Constants.navigationSubtitle)
+                    .padding(.leading)
+                ScrollView {
+                    LazyVStack (spacing: Constants.cardSpacing) {
+                        ForEach(model.modules) { module in
+                            contentCard(module: module)
+                            testCard(module: module)
+                        }
+                    }
+                    .padding()
+                }
             }
+            .navigationTitle(Constants.navigationTitle)
         }
     }
+    
+    @ViewBuilder
+    private func contentCard(module:Module) -> some View {
+        NavigationLink {
+            // todo
+        } label: {
+            let content = module.content
+            
+            HomeCard(title: "Learn \(module.category)",
+                     description: content.description,
+                     contentItemsDescription: "\(content.lessons.count) Lessons",
+                     duration: "\(content.time)",
+                     image: content.image)
+        }.buttonStyle(.plain)
+    }
+    
+    @ViewBuilder
+    private func testCard(module:Module) -> some View {
+        NavigationLink {
+            // todo
+        } label: {
+            let test = module.test
+            
+            HomeCard(title: "\(module.category) Test",
+                     description: test.description,
+                     contentItemsDescription: "\(test.questions.count) Questions",
+                     duration: "\(test.time)",
+                     image: test.image)
+        }.buttonStyle(.plain)
+    }
+    
 }
 
 struct HomeView_Previews: PreviewProvider {
