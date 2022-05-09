@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		846847892828DF8A0087FA06 /* LessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846847882828DF8A0087FA06 /* LessonListView.swift */; };
 		849131792824EB0800F35FDD /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849131782824EB0800F35FDD /* HomeCard.swift */; };
 		84C77FB02823A50100FA7C4E /* LearningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C77FAF2823A50100FA7C4E /* LearningApp.swift */; };
 		84C77FB22823A50100FA7C4E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C77FB12823A50100FA7C4E /* HomeView.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		846847882828DF8A0087FA06 /* LessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonListView.swift; sourceTree = "<group>"; };
 		849131782824EB0800F35FDD /* HomeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCard.swift; sourceTree = "<group>"; };
 		84C77FAC2823A50100FA7C4E /* LearningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C77FAF2823A50100FA7C4E /* LearningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningApp.swift; sourceTree = "<group>"; };
@@ -42,6 +44,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8468478A2828DF900087FA06 /* Lesson List */ = {
+			isa = PBXGroup;
+			children = (
+				846847882828DF8A0087FA06 /* LessonListView.swift */,
+			);
+			path = "Lesson List";
+			sourceTree = "<group>";
+		};
 		849131772824EAF400F35FDD /* Card */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +104,7 @@
 			children = (
 				849131772824EAF400F35FDD /* Card */,
 				84C77FB12823A50100FA7C4E /* HomeView.swift */,
+				8468478A2828DF900087FA06 /* Lesson List */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846847892828DF8A0087FA06 /* LessonListView.swift in Sources */,
 				84C77FB22823A50100FA7C4E /* HomeView.swift in Sources */,
 				84C77FB02823A50100FA7C4E /* LearningApp.swift in Sources */,
 				84C77FC32823A62000FA7C4E /* ContentModel.swift in Sources */,
