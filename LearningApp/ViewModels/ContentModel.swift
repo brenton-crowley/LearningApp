@@ -10,6 +10,8 @@ import Foundation
 class ContentModel: ObservableObject {
     
     @Published private(set) var modules:[Module] = []
+    @Published private(set) var currentModule:Module?
+    private var currentModuleIndex = 0
     
     private var styleData:Data?
     
@@ -41,4 +43,10 @@ class ContentModel: ObservableObject {
         return data
     }
     
+    // MARK: - Module navigation methods
+    
+    public func beginModule(_ moduleid:Int) {
+        currentModuleIndex = modules.firstIndex(where: { $0.id == moduleid }) ?? 0
+        currentModule = modules[currentModuleIndex]
+    }
 }

@@ -40,12 +40,19 @@ struct HomeView: View {
     
     @ViewBuilder
     private func contentCard(module:Module) -> some View {
+        
+        let title = "Learn \(module.category)"
+        
         NavigationLink {
-            // todo
+            ContentListView()
+                .navigationTitle(title)
+                .onAppear {
+                    model.beginModule(module.id)
+                }
         } label: {
             let content = module.content
             
-            HomeCard(title: "Learn \(module.category)",
+            HomeCard(title: title,
                      description: content.description,
                      contentItemsDescription: "\(content.lessons.count) Lessons",
                      duration: "\(content.time)",
