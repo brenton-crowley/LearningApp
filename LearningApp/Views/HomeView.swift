@@ -18,7 +18,7 @@ struct HomeView: View {
     @EnvironmentObject private var model:ContentModel
     
     var body: some View {
-        
+         
         NavigationView {
             
             VStack (alignment:.leading) {
@@ -35,7 +35,8 @@ struct HomeView: View {
                 }
             }
             .navigationTitle(Constants.navigationTitle)
-        }
+        }   
+        .navigationViewStyle(.stack)
     }
     
     @ViewBuilder

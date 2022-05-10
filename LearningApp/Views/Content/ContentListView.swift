@@ -10,11 +10,11 @@ import SwiftUI
 struct ContentListView: View {
     
     private struct Constants {
-        static let cornerRadius:CGFloat = 10.0
-        static let shadowRadius:CGFloat = 5.0
+        static let cornerRadius:CGFloat = GlobalConstants.cornerRadius
+        static let shadowRadius:CGFloat = GlobalConstants.shadowRadius
+        static let shadowColour:CGFloat = GlobalConstants.shadowColour
+        static let shadowOpacity:CGFloat = GlobalConstants.shadowOpacity
         static let cardSpacing:CGFloat = 20.0
-        static let shadowColour:CGFloat = 100.0
-        static let shadowOpacity:CGFloat = 0.5
         
         static let numberPadding:CGFloat = 25.0
         static let infoSpacing:CGFloat = 5.0
@@ -29,7 +29,11 @@ struct ContentListView: View {
         ScrollView {
             VStack (alignment: .leading, spacing: Constants.cardSpacing) {
                 ForEach(lessons.indices, id:\.self) { index in
-                    listCardWithLesson(index)
+
+                    NavigationLink {
+                        ContentDetailView()
+                            .onAppear { model.beginLesson(index) }
+                    } label: { listCardWithLesson(index) }.buttonStyle(.plain)
                 }
             }
             .padding()
@@ -81,7 +85,7 @@ struct LessonListView_Previews: PreviewProvider {
                 .environmentObject(model)
                 .navigationTitle("Learn \(model.currentModule?.category ?? "")")
                 .onAppear {
-                    model.beginModule(model.modules.first!.id)
+                    model.beginModule(0)
                 }
         }
     }
