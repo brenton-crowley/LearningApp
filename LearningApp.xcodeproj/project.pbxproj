@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		845481FB282A38C700F496BA /* ContentDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845481FA282A38C700F496BA /* ContentDescriptionView.swift */; };
 		846847892828DF8A0087FA06 /* ContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846847882828DF8A0087FA06 /* ContentListView.swift */; };
 		8468478C2828ED390087FA06 /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468478B2828ED390087FA06 /* ContentDetailView.swift */; };
 		8468478F2828F0240087FA06 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8468478E2828F0240087FA06 /* AVKit.framework */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		845481FA282A38C700F496BA /* ContentDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDescriptionView.swift; sourceTree = "<group>"; };
 		846847882828DF8A0087FA06 /* ContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListView.swift; sourceTree = "<group>"; };
 		8468478B2828ED390087FA06 /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
 		8468478E2828F0240087FA06 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
@@ -56,6 +58,7 @@
 			children = (
 				846847882828DF8A0087FA06 /* ContentListView.swift */,
 				8468478B2828ED390087FA06 /* ContentDetailView.swift */,
+				845481FA282A38C700F496BA /* ContentDescriptionView.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			files = (
 				8468478C2828ED390087FA06 /* ContentDetailView.swift in Sources */,
 				846847892828DF8A0087FA06 /* ContentListView.swift in Sources */,
+				845481FB282A38C700F496BA /* ContentDescriptionView.swift in Sources */,
 				84C77FB22823A50100FA7C4E /* HomeView.swift in Sources */,
 				84C77FB02823A50100FA7C4E /* LearningApp.swift in Sources */,
 				84C77FC32823A62000FA7C4E /* ContentModel.swift in Sources */,

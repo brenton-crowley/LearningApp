@@ -25,7 +25,7 @@ struct ContentDetailView: View {
                 videoPlayerForLesson(lesson)
                 
                 // description
-                
+                ContentDescriptionView()
                 // Next Lesson
                 nextLessonButton()
             }
