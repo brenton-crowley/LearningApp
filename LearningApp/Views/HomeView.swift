@@ -22,9 +22,12 @@ struct HomeView: View {
         NavigationView {
             
             VStack (alignment:.leading) {
+                // The Subtitle
                 Text(Constants.navigationSubtitle)
                     .padding(.leading)
                 ScrollView {
+                    
+                    // Create a list of card pairs
                     LazyVStack (spacing: Constants.cardSpacing) {
                         ForEach(model.modules) { module in
                             contentCard(module: module)
