@@ -9,14 +9,16 @@ import Foundation
 
 class ContentModel: ObservableObject {
     
-    @Published private(set) var modules:[Module] = []
-    @Published private(set) var currentModule:Module?
-    private var currentModuleIndex = 0
+    @Published var selectedContent:Int?
     
+    @Published private(set) var modules:[Module] = []
+    @Published private(set) var currentModule:Module?    
     @Published private(set) var currentLesson:Lesson?
     @Published private(set) var lessonDescription = NSAttributedString()
+    
     private(set) var currentLessonIndex:Int = 0
     
+    private var currentModuleIndex = 0
     private var styleData:Data?
     
     init() {

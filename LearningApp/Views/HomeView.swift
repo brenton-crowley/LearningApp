@@ -47,7 +47,8 @@ struct HomeView: View {
         
         let title = "Learn \(module.category)"
         
-        NavigationLink {
+        NavigationLink(tag: module.id,
+                       selection: $model.selectedContent) {
             ContentListView()
                 .navigationTitle(title)
                 .onAppear {
@@ -61,7 +62,8 @@ struct HomeView: View {
                      contentItemsDescription: "\(content.lessons.count) Lessons",
                      duration: "\(content.time)",
                      image: content.image)
-        }.buttonStyle(.plain)
+        }
+        .buttonStyle(.plain)
     }
     
     @ViewBuilder

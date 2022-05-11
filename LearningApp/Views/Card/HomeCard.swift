@@ -22,12 +22,12 @@ struct HomeCard: View {
         static let cardColour = Color.white
     }
     
+    
     let title:String
     let description:String
     let contentItemsDescription:String
     let duration:String
     let image:String
-    
     
     var body: some View {
         

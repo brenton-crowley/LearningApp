@@ -10,11 +10,6 @@ import AVKit
 
 struct ContentDetailView: View {
     
-    private struct Constants {
-        static let buttonHeight:CGFloat = GlobalConstants.buttonHeight
-        static let shadowRadius:CGFloat = GlobalConstants.shadowRadius
-    }
-    
     @EnvironmentObject private var model:ContentModel
     
     var body: some View {
@@ -48,27 +43,38 @@ struct ContentDetailView: View {
     @ViewBuilder
     private func nextLessonButton() -> some View {
         if model.hasNextLesson() {
-            Button {
+            
+            let nextLessonIndex = model.currentLessonIndex + 1
+            let nextLesson = model.currentModule?.content.lessons[nextLessonIndex]
+            
+            lessonButton(title: "Next Lesson: \(nextLesson?.title ?? "")", bgColor: .green) {
                 model.advanceLesson()
-            } label: {
-                
-                let nextLessonIndex = model.currentLessonIndex + 1
-                let nextLesson = model.currentModule?.content.lessons[nextLessonIndex]
-                
-                ZStack {
-                    // background
-                    RoundedRectangle(cornerRadius: GlobalConstants.cornerRadius)
-                        .frame(height: Constants.buttonHeight)
-                        .foregroundColor(.green)
-                        .shadow(radius: Constants.shadowRadius)
-                    
-                    // text overlay
-                    Text("Next Lesson: \(nextLesson?.title ?? "")")
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                }
-                
             }
+            
+        } else {
+            // show the complete button
+            lessonButton(title: "Complete", bgColor: .green) {
+                model.selectedContent = nil
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func lessonButton(title:String?, bgColor:Color?, action: (() -> Void)?) -> some View {
+        Button {
+            if let action = action { action() }
+        } label: {
+            
+            ZStack {
+                // background
+                RectangleCard(bgColor: .green)
+                
+                // text overlay
+                Text(title ?? "")
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+            }
+            
         }
     }
 }
