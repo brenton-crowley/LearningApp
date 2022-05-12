@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		845481FB282A38C700F496BA /* ContentDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845481FA282A38C700F496BA /* ContentDescriptionView.swift */; };
+		845481FB282A38C700F496BA /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845481FA282A38C700F496BA /* CodeTextView.swift */; };
 		846847892828DF8A0087FA06 /* ContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846847882828DF8A0087FA06 /* ContentListView.swift */; };
 		8468478C2828ED390087FA06 /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468478B2828ED390087FA06 /* ContentDetailView.swift */; };
 		8468478F2828F0240087FA06 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8468478E2828F0240087FA06 /* AVKit.framework */; };
 		849131792824EB0800F35FDD /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849131782824EB0800F35FDD /* HomeCard.swift */; };
 		84C46958282B888900BAE1B5 /* RectangleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C46957282B888900BAE1B5 /* RectangleCard.swift */; };
+		84C46975282B904400BAE1B5 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C46974282B904400BAE1B5 /* QuizView.swift */; };
+		84C46977282B924900BAE1B5 /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C46976282B924900BAE1B5 /* RectangleButton.swift */; };
 		84C77FB02823A50100FA7C4E /* LearningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C77FAF2823A50100FA7C4E /* LearningApp.swift */; };
 		84C77FB22823A50100FA7C4E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C77FB12823A50100FA7C4E /* HomeView.swift */; };
 		84C77FB42823A50300FA7C4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84C77FB32823A50300FA7C4E /* Assets.xcassets */; };
@@ -25,12 +27,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		845481FA282A38C700F496BA /* ContentDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDescriptionView.swift; sourceTree = "<group>"; };
+		845481FA282A38C700F496BA /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextView.swift; sourceTree = "<group>"; };
 		846847882828DF8A0087FA06 /* ContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListView.swift; sourceTree = "<group>"; };
 		8468478B2828ED390087FA06 /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
 		8468478E2828F0240087FA06 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		849131782824EB0800F35FDD /* HomeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCard.swift; sourceTree = "<group>"; };
 		84C46957282B888900BAE1B5 /* RectangleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCard.swift; sourceTree = "<group>"; };
+		84C46974282B904400BAE1B5 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		84C46976282B924900BAE1B5 /* RectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleButton.swift; sourceTree = "<group>"; };
 		84C77FAC2823A50100FA7C4E /* LearningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C77FAF2823A50100FA7C4E /* LearningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningApp.swift; sourceTree = "<group>"; };
 		84C77FB12823A50100FA7C4E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -60,7 +64,7 @@
 			children = (
 				846847882828DF8A0087FA06 /* ContentListView.swift */,
 				8468478B2828ED390087FA06 /* ContentDetailView.swift */,
-				845481FA282A38C700F496BA /* ContentDescriptionView.swift */,
+				845481FA282A38C700F496BA /* CodeTextView.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -78,8 +82,17 @@
 			children = (
 				849131782824EB0800F35FDD /* HomeCard.swift */,
 				84C46957282B888900BAE1B5 /* RectangleCard.swift */,
+				84C46976282B924900BAE1B5 /* RectangleButton.swift */,
 			);
 			path = Card;
+			sourceTree = "<group>";
+		};
+		84C46973282B903900BAE1B5 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				84C46974282B904400BAE1B5 /* QuizView.swift */,
+			);
+			path = Quiz;
 			sourceTree = "<group>";
 		};
 		84C77FA32823A50100FA7C4E = {
@@ -125,6 +138,7 @@
 		84C77FBD2823A5CE00FA7C4E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84C46973282B903900BAE1B5 /* Quiz */,
 				849131772824EAF400F35FDD /* Card */,
 				84C77FB12823A50100FA7C4E /* HomeView.swift */,
 				8468478A2828DF900087FA06 /* Content */,
@@ -238,8 +252,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8468478C2828ED390087FA06 /* ContentDetailView.swift in Sources */,
+				84C46977282B924900BAE1B5 /* RectangleButton.swift in Sources */,
 				846847892828DF8A0087FA06 /* ContentListView.swift in Sources */,
-				845481FB282A38C700F496BA /* ContentDescriptionView.swift in Sources */,
+				84C46975282B904400BAE1B5 /* QuizView.swift in Sources */,
+				845481FB282A38C700F496BA /* CodeTextView.swift in Sources */,
 				84C46958282B888900BAE1B5 /* RectangleCard.swift in Sources */,
 				84C77FB22823A50100FA7C4E /* HomeView.swift in Sources */,
 				84C77FB02823A50100FA7C4E /* LearningApp.swift in Sources */,

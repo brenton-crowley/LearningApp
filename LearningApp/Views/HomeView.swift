@@ -68,8 +68,14 @@ struct HomeView: View {
     
     @ViewBuilder
     private func testCard(module:Module) -> some View {
-        NavigationLink {
+        NavigationLink(tag: module.id,
+                       selection: $model.selectedTest) {
             // todo
+            QuizView()
+                .onAppear {
+//                    model.beginQuestion(model.currentQuestionIndex)
+                    model.beginTest(moduleId: module.id)
+                }
         } label: {
             let test = module.test
             

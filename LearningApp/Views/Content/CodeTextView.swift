@@ -1,5 +1,5 @@
 //
-//  ContentDescriptionView.swift
+//  CodeTextView.swift
 //  LearningApp
 //
 //  Created by Brent on 10/5/2022.
@@ -8,10 +8,11 @@
 import SwiftUI
 
 /// Creates a bridge between UIKit and SwiftUI via the UIViewRepresentable protocol
-struct ContentDescriptionView: UIViewRepresentable {
+struct CodeTextView: UIViewRepresentable {
     
     @EnvironmentObject private var model:ContentModel
     
+    var textToDisplay:NSAttributedString?
     
     /// Implemented protocol function that creates a UITextView
     /// - Parameter context
@@ -36,7 +37,7 @@ struct ContentDescriptionView: UIViewRepresentable {
     func updateUIView(_ textView: UITextView, context: Context) {
         
         // set the attributed text for the lesson
-        textView.attributedText = model.lessonDescription
+        textView.attributedText = textToDisplay ?? NSAttributedString()
         textView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
         
     }
@@ -45,6 +46,6 @@ struct ContentDescriptionView: UIViewRepresentable {
 
 struct ContentDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentDescriptionView()
+        CodeTextView()
     }
 }

@@ -10,16 +10,22 @@ import Foundation
 class ContentModel: ObservableObject {
     
     @Published var selectedContent:Int?
+    @Published var selectedTest:Int?
     
     @Published private(set) var modules:[Module] = []
     @Published private(set) var currentModule:Module?    
     @Published private(set) var currentLesson:Lesson?
+    @Published private(set) var currentQuestion:Question?
     @Published private(set) var lessonDescription = NSAttributedString()
+    @Published private(set) var questionDescription = NSAttributedString()
     
     private(set) var currentLessonIndex:Int = 0
+    private(set) var currentQuestionIndex:Int = 0
     
     private var currentModuleIndex = 0
     private var styleData:Data?
+    
+    var questionText:NSAttributedString { addStylingToHTMLString(currentQuestion?.content ?? "")}
     
     init() {
         
@@ -90,6 +96,29 @@ class ContentModel: ObservableObject {
     
     /// Increments the current lesson by one if it's within the lesson range.
     public func advanceLesson() { beginLesson(currentLessonIndex + 1) }
+    
+    // MARK: - Quiz Methods
+    
+    func beginTest(moduleId:Int) {
+        
+        beginModule(moduleId)
+        beginQuestion(0)
+    }
+    
+    public func beginQuestion(_ questionIndex:Int) {
+        
+        guard questionIndex < (currentModule?.test.questions.count)! else {
+            
+            currentQuestionIndex = 0
+            currentQuestion = nil
+            return
+        }
+        
+        currentQuestionIndex = questionIndex
+        currentQuestion = currentModule?.test.questions[currentQuestionIndex]
+        questionDescription = addStylingToHTMLString(currentQuestion?.content ?? "")
+        
+    }
     
     //MARK: - Code Styling
     /// Returns an NSAttributedString that's styled based on the styleData property.
