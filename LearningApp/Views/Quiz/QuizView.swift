@@ -19,6 +19,21 @@ struct QuizView: View {
     @State private var numberCorrect = 0
     @State private var submitted = false
     
+    var buttonText:String {
+        
+        // check if answer has been submitted
+        if submitted {
+            
+            if model.currentQuestionIndex + 1 == (model.currentModule?.test.questions.count ?? -1) {
+                return "Finish"
+            }
+            
+            return "Next" // or finish
+        }
+        
+        return "Submit"
+    }
+    
     var body: some View {
         VStack {
             
@@ -37,12 +52,16 @@ struct QuizView: View {
                 // Answers
                 answers()
                 // TODO: Change to be dynamic
-                RectangleButton(title: "Submit and Continue", bgColor: .green) {
+                RectangleButton(title: buttonText, bgColor: .green) {
                     //  Check the answer and increment the counter if correct.
                     if selectedAnswerIndex == model.currentQuestion?.correctIndex { numberCorrect += 1 }
                     
                     // change submitted state to true
-                    submitted = true
+                    if submitted {
+                        model.advanceQuestion()
+                        submitted = false
+                        selectedAnswerIndex = nil
+                    } else { submitted = true }
                 }
                 .disabled(selectedAnswerIndex == nil)
                 .foregroundColor(.white)

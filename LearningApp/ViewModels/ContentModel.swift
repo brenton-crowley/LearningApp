@@ -121,6 +121,8 @@ class ContentModel: ObservableObject {
         
     }
     
+    public func advanceQuestion() { beginQuestion(currentQuestionIndex + 1) }
+    
     /// Return the color of the background for an answer for a quiz question.
     /// - Parameters:
     ///   - answerIndex: The index of the answer button.
