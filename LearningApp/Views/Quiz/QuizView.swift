@@ -15,39 +15,42 @@ struct QuizView: View {
     
     @EnvironmentObject private var model:ContentModel
     
+    @State private var selectedAnswerIndex:Int?
+    @State private var numberCorrect = 0
+    @State private var submitted = false
+    
     var body: some View {
         VStack {
             
             if let module = model.currentModule {
                 
                 header(module:module)
+                    .padding(.horizontal)
                 
                 // question
 //                Text(model.currentQuestion?.content ?? "No Question")
                 CodeTextView(textToDisplay: model.questionText)
+                    .padding(.horizontal)
                     .border(.green)
                 // Attributed String
                 
                 // Answers
-                VStack (spacing: Constants.answerSpacing){
-                    ForEach(model.currentQuestion?.answers ?? [], id:\.self) { answer in
-                        RectangleButton(title: answer, bgColor: .white) {
-                            // TODO: Link to ContentModel
-                        }
-                        .foregroundColor(.black)
-                    }
-                }
-                Spacer()
+                answers()
                 // TODO: Change to be dynamic
-                RectangleButton(title: "Next", bgColor: .green) {
+                RectangleButton(title: "Submit and Continue", bgColor: .green) {
+                    //  Check the answer and increment the counter if correct.
+                    if selectedAnswerIndex == model.currentQuestion?.correctIndex { numberCorrect += 1 }
                     
+                    // change submitted state to true
+                    submitted = true
                 }
+                .disabled(selectedAnswerIndex == nil)
                 .foregroundColor(.white)
+                .padding(.horizontal)
             }
-            
         }
-        .padding()
     }
+    
     
     @ViewBuilder
     private func header(module:Module) -> some View {
@@ -59,6 +62,31 @@ struct QuizView: View {
             Spacer()
             
             Text("Question \(model.currentQuestionIndex+1) of \(model.currentModule?.test.questions.count ?? 0)")
+        }
+    }
+    
+    @ViewBuilder
+    private func answers() -> some View {
+        ScrollView {
+            VStack (spacing: Constants.answerSpacing){
+                ForEach(0..<(model.currentQuestion?.answers.count ?? 0), id:\.self) { index in
+                    
+                    let answer = model.currentQuestion?.answers[index]
+//                    let bgColor:Color = selectedAnswerIndex == index ? .gray : .white
+                    
+                    let bgColor = model.colorForAnswerIndex(index,
+                                                            selectedAnswerIndex: selectedAnswerIndex ?? -1,
+                                                            isSubmitted: submitted)
+                    
+                    RectangleButton(title: answer ?? "", bgColor: bgColor) {
+                        // TODO: Link to ContentModel
+                        selectedAnswerIndex = index
+                    }
+                    .disabled(submitted)
+                    .padding(.horizontal)
+                    .foregroundColor(.black)
+                }
+            }.padding(.top)
         }
     }
 }

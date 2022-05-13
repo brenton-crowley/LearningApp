@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ContentModel: ObservableObject {
     
@@ -118,6 +119,31 @@ class ContentModel: ObservableObject {
         currentQuestion = currentModule?.test.questions[currentQuestionIndex]
         questionDescription = addStylingToHTMLString(currentQuestion?.content ?? "")
         
+    }
+    
+    /// Return the color of the background for an answer for a quiz question.
+    /// - Parameters:
+    ///   - answerIndex: The index of the answer button.
+    ///   - selectedAnswerIndex: The currently selected button.
+    ///   - isSubmitted: A flag to determine whether or not the question has been submitted.
+    /// - Returns: A color of red (incorrect), green (correct), gray (selected) or white (neutral).
+    public func colorForAnswerIndex(_ answerIndex:Int, selectedAnswerIndex:Int, isSubmitted:Bool) -> Color {
+        
+        if isSubmitted {
+            let correctIndex = currentQuestion?.correctIndex
+                
+            // display gree if the answerIndex is equal to the correct index
+            if correctIndex == answerIndex { return .green }
+            
+            // if the selected answer is the answer index and that's not the correct index, then set it to red.
+            if correctIndex != selectedAnswerIndex && selectedAnswerIndex == answerIndex { return .red }
+            
+        } else {
+            // return gray for a currently selected answer.
+            return selectedAnswerIndex == answerIndex ? .gray : .white
+        }
+        
+        return .white
     }
     
     //MARK: - Code Styling
