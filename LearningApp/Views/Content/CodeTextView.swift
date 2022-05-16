@@ -46,6 +46,12 @@ struct CodeTextView: UIViewRepresentable {
 
 struct ContentDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        CodeTextView()
+        
+        let model = ContentModel()
+        let _ = model.beginTest(moduleId: 0)
+        
+        CodeTextView(textToDisplay: model.questionText)
+            .border(.green)
+            .aspectRatio(contentMode: .fit)
     }
 }

@@ -55,7 +55,7 @@ struct QuizView: View {
         //                Text(model.currentQuestion?.content ?? "No Question")
         CodeTextView(textToDisplay: model.questionText)
             .padding(.horizontal)
-        
+
         // Answers
         answers()
         // TODO: Change to be dynamic
@@ -92,23 +92,29 @@ struct QuizView: View {
     private func answers() -> some View {
         ScrollView {
             VStack (spacing: Constants.answerSpacing){
-                ForEach(0..<(model.currentQuestion?.answers.count ?? 0), id:\.self) { index in
+                
+                if let totalAnswers = model.currentQuestion?.answers {
                     
-                    let answer = model.currentQuestion?.answers[index]
-//                    let bgColor:Color = selectedAnswerIndex == index ? .gray : .white
-                    
-                    let bgColor = model.colorForAnswerIndex(index,
-                                                            selectedAnswerIndex: selectedAnswerIndex ?? -1,
-                                                            isSubmitted: submitted)
-                    
-                    RectangleButton(title: answer ?? "", bgColor: bgColor) {
-                        // TODO: Link to ContentModel
-                        selectedAnswerIndex = index
+                    ForEach(0..<totalAnswers.count, id:\.self) { index in
+                        
+                        let answer = model.currentQuestion?.answers[index]
+    //                    let bgColor:Color = selectedAnswerIndex == index ? .gray : .white
+                        
+                        let bgColor = model.colorForAnswerIndex(index,
+                                                                selectedAnswerIndex: selectedAnswerIndex ?? -1,
+                                                                isSubmitted: submitted)
+                        
+                        RectangleButton(title: answer ?? "", bgColor: bgColor) {
+                            // TODO: Link to ContentModel
+                            selectedAnswerIndex = index
+                        }
+                        .disabled(submitted)
+                        .padding(.horizontal)
+                        .foregroundColor(.black)
                     }
-                    .disabled(submitted)
-                    .padding(.horizontal)
-                    .foregroundColor(.black)
+                    
                 }
+                
             }.padding(.top)
         }
     }

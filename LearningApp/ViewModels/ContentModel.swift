@@ -75,18 +75,19 @@ class ContentModel: ObservableObject {
         
         session.dataTask(with: request) { data, response, error in
             
-            guard let _ = error else {
+            if let _ = error {
+                print("Failed to load the URL")
+            } else {
                 
                 guard let data = data else { return }
                 
                 guard let items = try? JSONDecoder().decode([Module].self, from: data) else { return }
                 
-                self.modules += items
+                // This means that the background thread won't attept to update the UI
+                // Force the assignment of the new items to occur on the main thread that updates UI.
+                DispatchQueue.main.async { self.modules += items }
                 
-                return
             }
-            
-            print("Failed to load the URL")
             
         }.resume()
         
@@ -202,7 +203,7 @@ class ContentModel: ObservableObject {
         
         // Append the styleData to the data object if it exists.
         if let styleData = styleData { data.append(styleData) }
-        
+        let htmlString = htmlString.trimmingCharacters(in: .whitespacesAndNewlines)
         data.append(Data(htmlString.utf8))
         
         // assign the attributedString to the result variable.
