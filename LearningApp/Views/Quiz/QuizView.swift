@@ -19,6 +19,8 @@ struct QuizView: View {
     @State private var numberCorrect = 0
     @State private var submitted = false
     
+    var module:Module? { model.currentModule }
+    
     var buttonText:String {
         
         // check if answer has been submitted
@@ -36,52 +38,48 @@ struct QuizView: View {
     
     var body: some View {
         VStack {
-            
-            if let module = model.currentModule {
-                
-                if let _ = model.currentQuestion {
-                    
-                    header(module:module)
-                        .padding(.horizontal)
-                    
-                    // question
-                    //                Text(model.currentQuestion?.content ?? "No Question")
-                    CodeTextView(textToDisplay: model.questionText)
-                        .padding(.horizontal)
-                        .border(.green)
-                    // Attributed String
-                    
-                    // Answers
-                    answers()
-                    // TODO: Change to be dynamic
-                    RectangleButton(title: buttonText, bgColor: .green) {
-                        //  Check the answer and increment the counter if correct.
-                        if selectedAnswerIndex == model.currentQuestion?.correctIndex { numberCorrect += 1 }
-                        
-                        // change submitted state to true
-                        if submitted {
-                            model.advanceQuestion()
-                            submitted = false
-                            selectedAnswerIndex = nil
-                        } else { submitted = true }
-                    }
-                    .disabled(selectedAnswerIndex == nil)
-                    .foregroundColor(.white)
-                    .padding(.horizontal)
-                } else {
-                    QuizResultView(numberCorrect:numberCorrect)
-                }
-                
+            if let _ = model.currentQuestion {
+                quiz()
+            } else {
+                QuizResultView(numberCorrect:numberCorrect)
             }
         }
     }
     
+    @ViewBuilder
+    private func quiz() -> some View {
+        header()
+            .padding(.horizontal)
+        
+        // question
+        //                Text(model.currentQuestion?.content ?? "No Question")
+        CodeTextView(textToDisplay: model.questionText)
+            .padding(.horizontal)
+        
+        // Answers
+        answers()
+        // TODO: Change to be dynamic
+        RectangleButton(title: buttonText, bgColor: .green) {
+            //  Check the answer and increment the counter if correct.
+            if selectedAnswerIndex == model.currentQuestion?.correctIndex { numberCorrect += 1 }
+            
+            // change submitted state to true
+            if submitted {
+                model.advanceQuestion()
+                submitted = false
+                selectedAnswerIndex = nil
+            } else { submitted = true }
+        }
+        .disabled(selectedAnswerIndex == nil)
+        .foregroundColor(.white)
+        .padding(.horizontal)
+    }
     
     @ViewBuilder
-    private func header(module:Module) -> some View {
+    private func header() -> some View {
         HStack {
             // Quiz Name
-            Text("\(module.category) Test")
+            Text("\(module?.category ?? "") Test")
                 .font(.title)
                 .fontWeight(.bold)
             Spacer()

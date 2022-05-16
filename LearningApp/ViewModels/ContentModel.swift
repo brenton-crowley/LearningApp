@@ -32,6 +32,8 @@ class ContentModel: ObservableObject {
         
         self.modules = getItemsFromJSONFile("data", type: Module.self) ?? []
         self.styleData = getStyleDataHTMLFile("style")
+        
+        getRemoteData()
     }
     
     /// Imports a JSON file and maps its object tree to model objects
@@ -39,16 +41,13 @@ class ContentModel: ObservableObject {
     ///   - filename: The name of the JSON file you wish to import
     ///   - type: The root model object's type. Eg. `Module.self`
     /// - Returns: An array of the root model's type. If only one object exists then it will return an array with that one object.
-    func getItemsFromJSONFile<T>(_ filename:String, type:T.Type) -> [T]? where T:Decodable {
-        
+    private func getItemsFromJSONFile<T>(_ filename:String, type:T.Type) -> [T]? where T:Decodable {
         
         guard let url = Bundle.main.url(forResource: filename, withExtension: "json") else { return nil}
         
         guard let data = try? Data(contentsOf: url) else { return nil }
         
-        let decoder = JSONDecoder()
-        
-        guard let items = try? decoder.decode([T].self, from: data) else { return nil }
+        guard let items = try? JSONDecoder().decode([T].self, from: data) else { return nil }
         
         return items
     }
@@ -56,12 +55,41 @@ class ContentModel: ObservableObject {
     /// Import the styling css from the bundle file.
     /// - Parameter filename: The name of the style file that you want to import.
     /// - Returns: A data object containing the styling data should it succeed, otherwise nil.
-    func getStyleDataHTMLFile(_ filename:String) -> Data? {
+    private func getStyleDataHTMLFile(_ filename:String) -> Data? {
         
         guard let url = Bundle.main.url(forResource: filename, withExtension: "html") else { return nil}
         guard let data = try? Data(contentsOf: url) else { return nil }
         
         return data
+    }
+    
+    private func getRemoteData() {
+        
+        guard let url = URL(string: GlobalConstants.remoteJSONURLString) else { return }
+        
+        // create URLRequest object
+        let request = URLRequest(url: url)
+        
+        // get the session and kick off the task
+        let session = URLSession.shared
+        
+        session.dataTask(with: request) { data, response, error in
+            
+            guard let _ = error else {
+                
+                guard let data = data else { return }
+                
+                guard let items = try? JSONDecoder().decode([Module].self, from: data) else { return }
+                
+                self.modules += items
+                
+                return
+            }
+            
+            print("Failed to load the URL")
+            
+        }.resume()
+        
     }
     
     // MARK: - Module navigation methods

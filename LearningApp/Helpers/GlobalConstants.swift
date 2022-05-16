@@ -13,6 +13,7 @@ public typealias GlobalConstants = Global.Constants
 public struct Global {
     public struct Constants {
         static let urlPrefix = "https://codewithchris.github.io/learningJSON/"
+        static let remoteJSONURLString = "https://brenton-crowley.github.io/CWC-learning-app-data/data2.json"
         
         static let cornerRadius:CGFloat = 10.0
         static let shadowRadius:CGFloat = 5.0
