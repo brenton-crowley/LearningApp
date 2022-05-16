@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8450A52928321543003C2A3F /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450A52828321543003C2A3F /* QuizResultView.swift */; };
 		845481FB282A38C700F496BA /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845481FA282A38C700F496BA /* CodeTextView.swift */; };
 		846847892828DF8A0087FA06 /* ContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846847882828DF8A0087FA06 /* ContentListView.swift */; };
 		8468478C2828ED390087FA06 /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468478B2828ED390087FA06 /* ContentDetailView.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8450A52828321543003C2A3F /* QuizResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultView.swift; sourceTree = "<group>"; };
 		845481FA282A38C700F496BA /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextView.swift; sourceTree = "<group>"; };
 		846847882828DF8A0087FA06 /* ContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListView.swift; sourceTree = "<group>"; };
 		8468478B2828ED390087FA06 /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				84C46974282B904400BAE1B5 /* QuizView.swift */,
+				8450A52828321543003C2A3F /* QuizResultView.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				84C77FB02823A50100FA7C4E /* LearningApp.swift in Sources */,
 				84C77FC32823A62000FA7C4E /* ContentModel.swift in Sources */,
 				84C77FC92823A89700FA7C4E /* Models.swift in Sources */,
+				8450A52928321543003C2A3F /* QuizResultView.swift in Sources */,
 				84C9EA9F282A249200A2D71E /* GlobalConstants.swift in Sources */,
 				849131792824EB0800F35FDD /* HomeCard.swift in Sources */,
 			);

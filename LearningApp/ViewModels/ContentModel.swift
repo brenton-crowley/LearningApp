@@ -148,6 +148,21 @@ class ContentModel: ObservableObject {
         return .white
     }
     
+    public func calculatePercentFromNumberCorrect(_ numberCorrect:Int, numQuestions:Int) -> Double {
+        
+        return Double(numberCorrect) / Double(numQuestions)
+    }
+    
+    public func headingForPercentage(_ percentage:Double) -> String {
+        if percentage > 0.5 {
+            return "Awesome!"
+        } else if percentage > 0.2 {
+            return "Doing great!"
+        } else {
+            return "Keep learning."
+        }
+    }
+    
     //MARK: - Code Styling
     /// Returns an NSAttributedString that's styled based on the styleData property.
     /// - Parameter htmlString: The HTML String that will be parsed

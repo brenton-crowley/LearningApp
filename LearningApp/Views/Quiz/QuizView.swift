@@ -39,33 +39,39 @@ struct QuizView: View {
             
             if let module = model.currentModule {
                 
-                header(module:module)
-                    .padding(.horizontal)
-                
-                // question
-//                Text(model.currentQuestion?.content ?? "No Question")
-                CodeTextView(textToDisplay: model.questionText)
-                    .padding(.horizontal)
-                    .border(.green)
-                // Attributed String
-                
-                // Answers
-                answers()
-                // TODO: Change to be dynamic
-                RectangleButton(title: buttonText, bgColor: .green) {
-                    //  Check the answer and increment the counter if correct.
-                    if selectedAnswerIndex == model.currentQuestion?.correctIndex { numberCorrect += 1 }
+                if let _ = model.currentQuestion {
                     
-                    // change submitted state to true
-                    if submitted {
-                        model.advanceQuestion()
-                        submitted = false
-                        selectedAnswerIndex = nil
-                    } else { submitted = true }
+                    header(module:module)
+                        .padding(.horizontal)
+                    
+                    // question
+                    //                Text(model.currentQuestion?.content ?? "No Question")
+                    CodeTextView(textToDisplay: model.questionText)
+                        .padding(.horizontal)
+                        .border(.green)
+                    // Attributed String
+                    
+                    // Answers
+                    answers()
+                    // TODO: Change to be dynamic
+                    RectangleButton(title: buttonText, bgColor: .green) {
+                        //  Check the answer and increment the counter if correct.
+                        if selectedAnswerIndex == model.currentQuestion?.correctIndex { numberCorrect += 1 }
+                        
+                        // change submitted state to true
+                        if submitted {
+                            model.advanceQuestion()
+                            submitted = false
+                            selectedAnswerIndex = nil
+                        } else { submitted = true }
+                    }
+                    .disabled(selectedAnswerIndex == nil)
+                    .foregroundColor(.white)
+                    .padding(.horizontal)
+                } else {
+                    QuizResultView(numberCorrect:numberCorrect)
                 }
-                .disabled(selectedAnswerIndex == nil)
-                .foregroundColor(.white)
-                .padding(.horizontal)
+                
             }
         }
     }
